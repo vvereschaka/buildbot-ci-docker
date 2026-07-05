@@ -1,0 +1,10 @@
+buildbot-worker
+requests[security]
+future
+swig
+pexpect
+psutil
+setuptools
+packaging
+pygments
+pyyaml

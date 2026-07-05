@@ -1,0 +1,54 @@
+# Production Workers
+#
+# sudo docker compose -f docker-compose/compose-as-builder-4.prod.yaml up -d
+#
+# Note: `worker_password.txt` file must be created manually inside of `docker-compose` folder.
+
+services:
+  as-builder-4:
+    image: buildbot-worker/llvm-project/ubuntu:clang-21
+    container_name: as-builder-4
+    restart: always
+
+    environment:
+      BUILDMASTER: 10.1.1.9
+      BUILDMASTER_PORT: 9990
+      WORKERNAME: as-builder-4
+      # buildbot.tac will read the password from the mounted secret file
+      WORKERPASS_FILE: /run/secrets/worker_password
+
+    secrets:
+      - worker_password
+
+    # https://docs.docker.com/engine/logging/configure/
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  as-builder-4-rel:
+    image: buildbot-worker/llvm-project/ubuntu:clang-21
+    container_name: as-builder-4-rel
+    restart: always
+
+    environment:
+      BUILDMASTER: 10.1.1.9
+      BUILDMASTER_PORT: 9990
+      WORKERNAME: as-builder-4-rel
+      # buildbot.tac will read the password from the mounted secret file
+      WORKERPASS_FILE: /run/secrets/worker_password
+
+    secrets:
+      - worker_password
+
+    # https://docs.docker.com/engine/logging/configure/
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+secrets:
+  worker_password:
+    file: ./worker_password.txt
