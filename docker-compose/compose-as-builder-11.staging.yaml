@@ -28,7 +28,7 @@ services:
         max-file: "3"
 
     volumes:
-      /mnt/fs:/mnt/fs
+      - /mnt/fs:/mnt/fs
 
 secrets:
   worker_password:

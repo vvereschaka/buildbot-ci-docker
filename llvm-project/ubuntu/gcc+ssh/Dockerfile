@@ -46,6 +46,8 @@ RUN apt-get install -y \
 # Installing build tools
 RUN apt install -y build-essential ninja-build ccache git gcc g++ liblzma-dev libz-dev libxml2-dev net-tools
 
+COPY extra-packages.txt .
+RUN cat extra-packages.txt | xargs apt-get install -y 
 
 # Installing python packages (including buildbot-worker)
 COPY worker/requirements.txt .
@@ -62,8 +64,7 @@ RUN useradd -c "Buildbot Worker" --user-group --groups=cdrom,sudo,dip,plugdev --
 USER buildbot
 
 # SSH settings for the buildbot account
-COPY ./ssh /home/buildbot/.ssh
-RUN chown -R buildbot:buildbot /home/buildbot/.ssh
+COPY --chown=buildbot-buildbot ./ssh /home/buildbot/.ssh
 RUN chmod 0700 /home/buildbot/.ssh
 RUN chmod 0600 /home/buildbot/.ssh/id_ed25519
 RUN chmod 0644 /home/buildbot/.ssh/id_ed25519.pub
