@@ -1,0 +1,37 @@
+# Staging Worker
+#
+# sudo docker compose -f docker-compose/compose-as-builder-11.staging.yaml up -d
+#
+# Note: `worker_password.txt` file must be created manually inside of root's HOME folder.
+
+services:
+  as-builder-11:
+    image: buildbot-worker/llvm-project/ubuntu:gcc-ssh
+    container_name: as-builder-11-staging
+    restart: unless-stopped
+
+    environment:
+      BUILDMASTER: 10.1.1.13
+      BUILDMASTER_PORT: 9990
+      WORKERNAME: as-builder-11
+      # buildbot.tac will read the password from the mounted secret file
+      WORKERPASS_FILE: /run/secrets/worker_password
+
+    secrets:
+      - worker_password
+
+    # https://docs.docker.com/engine/logging/configure/
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+    volumes:
+      /mnt/fs:/mnt/fs
+
+secrets:
+  worker_password:
+    #Note: store the worker_password into the root's home directory.
+    # docker cannot mount this file from /var folder and subfolders.
+    file: ${HOME}/worker_password.txt
