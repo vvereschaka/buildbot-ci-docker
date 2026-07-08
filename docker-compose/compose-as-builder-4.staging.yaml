@@ -51,4 +51,6 @@ services:
 
 secrets:
   worker_password:
-    file: ./worker_password.txt
+    #Note: store the worker_password into the root's home directory.
+    # docker cannot mount this file from /var folder and subfolders.
+    file: ${HOME}/worker_password.txt
