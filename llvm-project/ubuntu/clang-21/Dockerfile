@@ -39,13 +39,13 @@ RUN apt-get install -y \
     python3-venv
 
 # System wide installation of the same modules
-#RUN apt install python3-future python3-pexpect python3-psutil python3-setuptools python3-packaging python3-pygments
+#RUN apt-get install -y python3-future python3-pexpect python3-psutil python3-setuptools python3-packaging python3-pygments
 # lldb project requirements
-#RUN apt install swig python3-dev libedit-dev libncurses5-dev libxml2-dev
+#RUN apt-get install -y swig python3-dev libedit-dev libncurses5-dev libxml2-dev
 
 # Installing build tools
-RUN apt install -y build-essential ninja-build ccache git gcc g++ liblzma-dev libz-dev libxml2-dev net-tools
-RUN apt install -y clang-21 lld-21
+RUN apt-get install -y build-essential ninja-build ccache git gcc g++ liblzma-dev libz-dev libxml2-dev net-tools
+RUN apt-get install -y clang-21 lld-21
 
 #Note: keep as usage example.
 #COPY extra-packages.txt .

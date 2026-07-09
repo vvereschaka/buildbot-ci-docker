@@ -4,3 +4,8 @@ tcl-tls
 tdom
 expect
 rsync
+swig
+python3-dev
+libedit-dev
+libncurses5-dev
+libxml2-dev
