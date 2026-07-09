@@ -3,3 +3,4 @@ tcllib
 tcl-tls
 tdom
 expect
+rsync
