@@ -2,7 +2,7 @@
 #
 # sudo docker compose -f docker-compose/compose-as-builder-4.staging.yaml up -d
 #
-# Note: `worker_password.txt` file must be created manually inside of `docker-compose` folder.
+# Note: `worker_password.txt` file must be created manually inside of root's HOME folder.
 
 services:
   as-builder-4:

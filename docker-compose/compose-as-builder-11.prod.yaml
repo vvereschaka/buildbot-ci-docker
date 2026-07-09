@@ -1,6 +1,6 @@
 # Staging Worker
 #
-# sudo docker compose -f docker-compose/compose-as-builder-11.staging.yaml up -d
+# sudo docker compose -f docker-compose/compose-as-builder-11.prod.yaml up -d
 #
 # Note: `worker_password.txt` file must be created manually inside of root's HOME folder.
 
@@ -11,7 +11,7 @@ services:
     restart: unless-stopped
 
     environment:
-      BUILDMASTER: 10.1.1.13
+      BUILDMASTER: 10.1.1.9
       BUILDMASTER_PORT: 9990
       WORKERNAME: as-builder-11
       # buildbot.tac will read the password from the mounted secret file
