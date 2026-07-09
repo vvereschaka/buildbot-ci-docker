@@ -62,7 +62,7 @@ RUN rm -rf /var/lib/apt/lists/*
 RUN useradd -c "Buildbot Worker" --user-group --groups=cdrom,sudo,dip,plugdev --shell=/bin/bash --home-dir=/home/buildbot --create-home buildbot
 
 # SSH settings for the buildbot account
-COPY --chown=buildbot-buildbot ./ssh /home/buildbot/.ssh
+COPY --chown=buildbot:buildbot ./ssh /home/buildbot/.ssh
 RUN chmod 0700 /home/buildbot/.ssh
 RUN chmod 0600 /home/buildbot/.ssh/id_ed25519
 RUN chmod 0644 /home/buildbot/.ssh/id_ed25519.pub
