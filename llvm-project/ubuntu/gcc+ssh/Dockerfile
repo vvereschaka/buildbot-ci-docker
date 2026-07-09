@@ -21,7 +21,7 @@ ARG WORKERNAME=docker-worker
 ARG WORKERADMIN="your_name <your_email>"
 
 # findutils - for 'xargs'
-RUN apt-get -y update && apt-get install -y ca-certificates gpg wget findutils ssh
+RUN apt-get -y update && apt-get install -y ca-certificates gpg wget findutils openssh-client
 
 # Prepare APT repos
 COPY scripts/prepare-apt-repos.sh .
