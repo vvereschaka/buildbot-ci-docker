@@ -7,7 +7,7 @@
 services:
   as-builder-11:
     image: buildbot-worker/llvm-project/ubuntu:gcc-ssh
-    container_name: as-builder-11-staging
+    container_name: as-builder-11
     restart: unless-stopped
 
     environment:
